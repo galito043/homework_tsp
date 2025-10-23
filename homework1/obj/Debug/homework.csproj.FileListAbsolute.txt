@@ -1,0 +1,10 @@
+C:\Users\galit\source\repos\homework\obj\Debug\homework.csproj.AssemblyReference.cache
+C:\Users\galit\source\repos\homework\obj\Debug\homework.Form1.resources
+C:\Users\galit\source\repos\homework\obj\Debug\homework.Properties.Resources.resources
+C:\Users\galit\source\repos\homework\obj\Debug\homework.csproj.GenerateResource.cache
+C:\Users\galit\source\repos\homework\obj\Debug\homework.csproj.CoreCompileInputs.cache
+C:\Users\galit\source\repos\homework\bin\Debug\homework.exe.config
+C:\Users\galit\source\repos\homework\bin\Debug\homework.exe
+C:\Users\galit\source\repos\homework\bin\Debug\homework.pdb
+C:\Users\galit\source\repos\homework\obj\Debug\homework.exe
+C:\Users\galit\source\repos\homework\obj\Debug\homework.pdb

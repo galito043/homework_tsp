@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
+
+namespace homework
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            string project= Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string filePath = Path.Combine(project, "TextFile1.txt");
+            String text = Directory.GetCurrentDirectory();
+            String txt = Directory.GetParent(Directory.GetCurrentDirectory()).ToString();
+
+            Console.Write(text, "text");
+            Console.WriteLine(txt);
+            
+
+
+            richTextBox1.Text = File.ReadAllText(filePath);
+
+
+
+            string[] lines = richTextBox1.Lines;
+            int numberOfLines = lines.Length;
+
+            textBox1.Text = numberOfLines.ToString();
+
+            int comments = 0;
+            int emptyLines = 0;
+            foreach (string l in lines)
+            {
+                if (l.StartsWith("//")){
+                    comments++;
+                }
+                if (string.IsNullOrEmpty(l)){
+                    emptyLines++;
+                }
+
+            }
+            int commentsAndEmptyLines = comments + emptyLines;
+            int withoutCommentsAndEmptyLines = numberOfLines - commentsAndEmptyLines;
+
+            textBox2.Text = comments.ToString();
+            textBox3.Text = emptyLines.ToString();
+            textBox4.Text = commentsAndEmptyLines.ToString();
+            textBox5.Text = withoutCommentsAndEmptyLines.ToString();
+
+
+
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

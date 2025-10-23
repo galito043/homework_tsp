@@ -33,10 +33,21 @@ namespace homework2
 
             int days = (today - bday.AddMonths((years * 12) + months)).Days;
 
-            return string.Format("{0} year{1}, {2} month{3} and {4} day{5}",
-                                 years, (years == 1) ? "" : "s",
-                                 months, (months == 1) ? "" : "s",
-                                 days, (days == 1) ? "" : "s");
+            return $"years {years}, months {months}, days {days}";
+        }
+        public static string getYearsOld(this DateTime bday)
+        {
+            DateTime today = DateTime.Today;
+
+            int months = today.Month - bday.Month;
+            int years = today.Year - bday.Year;
+
+            if (today.Month < bday.Month)
+            {
+                years--;
+            }
+
+            return $"{years} years old";
         }
     }
     public partial class Form1 : Form
@@ -53,10 +64,12 @@ namespace homework2
             int day = Int32.Parse(textBox3.Text.Trim());
 
 
+
+
             try
             {
                 DateTime birthday = new DateTime(year, month, day);
-                String age = AgeCalculator.ToAgeString(birthday);
+                String age = AgeCalculator.getYearsOld(birthday);
 
 
                 MessageBox.Show($"You are " + age);

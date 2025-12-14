@@ -7,29 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient; // <--- This is required for SQL connection
+using System.Data.SqlClient; 
 
 namespace Tourist_Agency
 {
     public partial class Clients : Form
     {
-        // 1. DATABASE CONNECTION STRING
-        // Make sure "ShopDB" matches your actual database name in Server Explorer
-        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Tourist_Agency;Integrated Security=True";
+
+        string connectionString = @"";
 
         public Clients()
         {
             InitializeComponent();
         }
 
-        // 2. FORM LOAD EVENT
-        // This runs automatically when the window opens
+
         private void Clients_Load(object sender, EventArgs e)
         {
-            LoadData(); // Load the table immediately
+            LoadData(); 
         }
 
-        // 3. HELPER METHOD TO LOAD DATA INTO GRID
+
         private void LoadData()
         {
             try
@@ -37,12 +35,11 @@ namespace Tourist_Agency
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    // Select all columns from your 'clients' table
+
                     SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM clients", con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    // Assumes your DataGridView is named 'dataGridView1'
                     dataGridView1.DataSource = dt;
                 }
             }
@@ -52,15 +49,7 @@ namespace Tourist_Agency
             }
         }
 
-        // 4. ADD BUTTON (INSERT)
-        // Double-click your "Add" button in the designer to link this event
 
-        // 5. UPDATE BUTTON
-        // Double-click your "Update" button in the designer to link this event
-
-
-
-        // Optional: Helper to clear textboxes after an action
         private void ClearFields()
         {
             txtId.Text = "";
@@ -71,7 +60,6 @@ namespace Tourist_Agency
             cmbGender.SelectedIndex = -1;
         }
 
-        // Optional: Click on Grid Row to fill TextBoxes (Easier for editing)
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -83,7 +71,7 @@ namespace Tourist_Agency
                 cmbGender.Text = row.Cells["gender"].Value.ToString();
                 txtInsurance.Text = row.Cells["insurance_id"].Value.ToString();
                 txtEGN.Text = row.Cells["personal_id"].Value.ToString();
-                // Handle Date parsing carefully
+
                 if (row.Cells["date_of_birth"].Value != DBNull.Value)
                 {
                     dateTimePicker1.Value = Convert.ToDateTime(row.Cells["date_of_birth"].Value);
@@ -105,17 +93,17 @@ namespace Tourist_Agency
 
                     SqlCommand cmd = new SqlCommand(query, con);
 
-                    // Linking textboxes to database columns
-                    cmd.Parameters.AddWithValue("@Name", txtName.Text);       // Textbox for Full Name
-                    cmd.Parameters.AddWithValue("@Country", txtCountry.Text); // Textbox for Country
-                    cmd.Parameters.AddWithValue("@Gender", cmbGender.Text);   // ComboBox for Gender
-                    cmd.Parameters.AddWithValue("@Dob", dateTimePicker1.Value); // DatePicker
-                    cmd.Parameters.AddWithValue("@Ins", txtInsurance.Text);   // Textbox for Insurance
-                    cmd.Parameters.AddWithValue("@Egn", txtEGN.Text);         // Textbox for EGN/Personal ID
+
+                    cmd.Parameters.AddWithValue("@Name", txtName.Text);       
+                    cmd.Parameters.AddWithValue("@Country", txtCountry.Text); 
+                    cmd.Parameters.AddWithValue("@Gender", cmbGender.Text);   
+                    cmd.Parameters.AddWithValue("@Dob", dateTimePicker1.Value);
+                    cmd.Parameters.AddWithValue("@Ins", txtInsurance.Text);   
+                    cmd.Parameters.AddWithValue("@Egn", txtEGN.Text);         
 
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Client Added Successfully!");
-                    LoadData(); // Refresh the grid to show new client
+                    MessageBox.Show("Client Added Successfully");
+                    LoadData();
                     ClearFields();
                 }
                 catch (Exception ex)
@@ -139,7 +127,7 @@ namespace Tourist_Agency
 
                     SqlCommand cmd = new SqlCommand(query, con);
 
-                    cmd.Parameters.AddWithValue("@Id", int.Parse(txtId.Text)); // Hidden or ReadOnly textbox for ID
+                    cmd.Parameters.AddWithValue("@Id", int.Parse(txtId.Text)); 
                     cmd.Parameters.AddWithValue("@Name", txtName.Text);
                     cmd.Parameters.AddWithValue("@Country", txtCountry.Text);
                     cmd.Parameters.AddWithValue("@Gender", cmbGender.Text);
@@ -193,15 +181,6 @@ namespace Tourist_Agency
         }
 
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void txtId_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
     

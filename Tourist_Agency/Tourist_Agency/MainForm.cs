@@ -21,8 +21,31 @@ namespace Tourist_Agency
         {
             Clients clientsWindow = new Clients();
 
-            // 2. Show it to the user
+
             clientsWindow.Show();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Excursions excursions = new Excursions();
+            excursions.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Orders orders = new Orders();
+            orders.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Queries queries = new Queries();
+            queries.Show();
         }
     }
 }

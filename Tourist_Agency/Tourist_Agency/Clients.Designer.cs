@@ -50,7 +50,7 @@
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.Size = new Size(360, 225);
             dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            
             // 
             // txtId
             // 
@@ -58,7 +58,7 @@
             txtId.Name = "txtId";
             txtId.Size = new Size(150, 31);
             txtId.TabIndex = 1;
-            txtId.TextChanged += txtId_TextChanged;
+            
             // 
             // txtName
             // 
